@@ -3,10 +3,15 @@ const config = require('./db');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
+const cors = require('cors');
 
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
+app.use(cors({
+  methods: ["GET", "POST", "PATCH", "DELETE"]
+}))
+
 
 //establish connection to the db and pass in the configuration details
 const connection = mysql.createConnection(config);
@@ -183,4 +188,4 @@ app.post('/users/login', async (req, res) => {
 }
 )
 
-app.listen(3003);
+app.listen(3004);
